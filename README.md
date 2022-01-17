@@ -11,13 +11,13 @@ LiveTime requires `yad` to display the timer as well as the pip `system_hotkey` 
 `system_hotkeys` has its own dependencies: `libxcb-render0-dev` as well as the pip modules `xcffib` and `xpybutil`.
 
 To install them (debian):
-``
+```
 sudo apt-get install libxcb-render0-dev
 sudo apt_get install yad
 pip3 install xcffib
 pip3 install xpybutil
 pip3 install system_hotkey
-``
+```
 
 ## Installation
 To use Livetime, you must download the clivetime.c timer script, compile it, and add it to your path, as well as download the livetime python script and add it to your path.
