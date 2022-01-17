@@ -23,10 +23,10 @@ pip3 install system_hotkey
 To use Livetime, you must download the clivetime.c timer script, compile it, and add it to your path, as well as download the livetime python script and add it to your path.
 You can use the following commands to do so:
 ```
-
+wget https://raw.githubusercontent.com/NicolasLalonde/LiveTime/main/clivetime.c
 gcc clivetime.c -o $HOME/.local/bin/clivetime
 sudo rm clivetime.c
-
+wget https://raw.githubusercontent.com/NicolasLalonde/LiveTime/main/livetime
 sudo chmod +x ./livetime
 mv ./livetime $HOME/.local/bin/livetime
 ```
