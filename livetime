@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+import signal
+import subprocess
+from system_hotkey import SystemHotkey
+
+
+#hotkeys
+start_hotkeys = ('shift', 'q')
+pause_hotkeys = ('shift', 'f')
+reset_hotkeys = ('shift', 't')
+#x and y window position (pixels)
+#if the position is out of bounds the window should hug the side of the screen
+x_position = 4000
+y_position = 4000
+#window width and height (pixels)
+window_width = 120
+window_height = 55
+
+
+timer = subprocess.Popen(["clivetime"], stdout=subprocess.PIPE)
+window = subprocess.Popen(["yad", "--text-info", "--justify=center", "--no-buttons", "--no-focus", "--on-top", "--no-escape", "--undecorated", "--width=" + str(window_width), "--height=" + str(window_height), "--posx=" + str(x_position), "--posy=" + str(y_position)], stdin=timer.stdout)
+
+def start_timer(s):
+	global timer
+	timer.send_signal(signal.SIGUSR1)
+	print("start timer!")
+	
+def pause_timer(s):
+	global timer
+	timer.send_signal(signal.SIGUSR2)
+	print("pause timer!")
+	
+def reset_timer(s):
+	global timer
+	timer.send_signal(signal.SIGHUP)
+	print("reset timer!")
+
+
+hotkeys = SystemHotkey()
+hotkeys.register(start_hotkeys, callback=start_timer)
+hotkeys.register(pause_hotkeys, callback=pause_timer)
+hotkeys.register(reset_hotkeys, callback=reset_timer)
+
+print("LiveTime started!")
+while True:
+	pass
+
+
+
+
